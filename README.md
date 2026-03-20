@@ -127,25 +127,25 @@ counters.json - The saved config file created and updated automatically by the a
 
 3. Choose a layout - Pick one of:
 
-- Vertical
-- Horizontal
-- Versus
+   - Vertical
+   - Horizontal
+   - Versus
 
 4. Choose refresh interval - Available options:
-- 250 ms
-- 500 ms
-- 1000 ms
-- 2000 ms
+   - 250 ms
+   - 500 ms
+   - 1000 ms
+   - 2000 ms
 
 5. Start the overlay - Click Start to:
 
-- save the current config
-- start the local server
-- open the overlay in a browser window
+   - save the current config
+   - start the local server
+   - open the overlay in a browser window
 
 6. Stop the overlay - Click Stop to close:
-- the overlay browser window
-- the local server process
+   - the overlay browser window
+   - the local server process
 
 Closing the app window should also stop everything it launched.
 
@@ -166,38 +166,43 @@ The app reads the file contents as text and displays them live.
 
 ## TROUBLESHOOTING
 
-PowerShell says script execution is disabled
+### PowerShell says script execution is disabled
 
-If you get an error like:
-running scripts is disabled on this system
+If you get an error like: ```running scripts is disabled on this system```
 
 try launching with:
+
+```text
 powershell -STA -NoProfile -ExecutionPolicy RemoteSigned -File ".\LiveCountersApp.ps1"
+```
 
 Or set it for the current user:
-Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 
-The overlay does not update
+```text
+Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
+```
+
+### The overlay does not update
 
 Check these things:
-- the .txt file path is correct
-- the file actually changes when the Stream Deck counter updates
-- the selected file in the app matches the file being updated
-- server_runtime.ps1 is in the same folder as the app
+ - the .txt file path is correct
+ - the file actually changes when the Stream Deck counter updates
+ - the selected file in the app matches the file being updated
+ - server_runtime.ps1 is in the same folder as the app
 
-The overlay window is not detected by streaming software
+### The overlay window is not detected by streaming software
 
 Some streaming apps may not detect browser app windows reliably.
 
 If that happens:
-- try capturing a normal browser window
-- or use display capture and crop it manually
+ - try capturing a normal browser window
+ - or use display capture and crop it manually
 
-Stop does not close everything
+### Stop does not close everything
 
 If browser windows stay open, the issue is usually how that browser instance was launched and detected. The current setup is designed to close only the overlay browser instance and the server process started by the app.
 
-WHY THIS EXISTS
+## WHY THIS EXISTS
 
 Some streaming software, especially outside the OBS ecosystem, does not support text-file overlays directly.
 
