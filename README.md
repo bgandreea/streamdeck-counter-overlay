@@ -127,41 +127,36 @@ counters.json - The saved config file created and updated automatically by the a
 1. Add counters
 Click Add, choose a .txt file, and enter the label you want to show in the overlay.
 
-**Example labels:**
 ```text
+Example labels:
+
 - Streamer
 - Chat
 - Wins
 - Loses
 ```
 
-2. Remove counters
-Select a counter in the list and click Remove.
+2. Remove counters - Select a counter in the list and click Remove.
 
-3. Choose a layout
-Pick one of:
+3. Choose a layout - Pick one of:
+
 - Vertical
 - Horizontal
 - Versus
 
-4. Choose refresh interval
-Available options:
+4. Choose refresh interval - Available options:
 - 250 ms
 - 500 ms
 - 1000 ms
 - 2000 ms
 
-Recommended default:
-- 500 ms
+5. Start the overlay - Click Start to:
 
-5. Start the overlay
-Click Start to:
 - save the current config
 - start the local server
 - open the overlay in a browser window
 
-6. Stop the overlay
-Click Stop to close:
+6. Stop the overlay - Click Stop to close:
 - the overlay browser window
 - the local server process
 
@@ -181,51 +176,6 @@ or
 ```
 
 The app reads the file contents as text and displays them live.
-
-## EXAMPLE SETUP
-
-**Example counter files:**
-```text
-F:\My_Files\Stream\live_counters\streamer.txt
-F:\My_Files\Stream\live_counters\chat.txt
-F:\My_Files\Stream\live_counters\wins.txt
-F:\My_Files\Stream\live_counters\loses.txt
-```
-
-**Example labels:**
-```text
-- Streamer
-- Chat
-- Wins
-- Loses
-```
-
-**EXAMPLE counters.json**
-
-```text
-{
-  "refreshMs": 500,
-  "style": "horizontal",
-  "counters": [
-    {
-      "label": "Streamer",
-      "file": "F:\\My_Files\\Stream\\live_counters\\streamer.txt"
-    },
-    {
-      "label": "Chat",
-      "file": "F:\\My_Files\\Stream\\live_counters\\chat.txt"
-    },
-    {
-      "label": "Wins",
-      "file": "F:\\My_Files\\Stream\\live_counters\\wins.txt"
-    },
-    {
-      "label": "Loses",
-      "file": "F:\\My_Files\\Stream\\live_counters\\loses.txt"
-    }
-  ]
-}
-```
 
 ## TROUBLESHOOTING
 
