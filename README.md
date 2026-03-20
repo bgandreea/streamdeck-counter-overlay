@@ -15,7 +15,7 @@ This tool turns one or more text-based counters into a local browser overlay tha
   - 1000 ms
   - 2000 ms
 - Opens the overlay in a browser window
-- Uses a chroma-key friendly green background (#00FF00)
+- Uses a chroma-key friendly green background (```#00FF00```)
 - Keeps the actual counter cards grey
 - Local-only workflow
 - No blur effects
@@ -87,7 +87,9 @@ This is useful for head-to-head counters, battles, polls, or score comparisons.
 ## CHROMA KEY BACKGROUND
 
 The overlay page uses a solid green background:
+```
 #00FF00
+```
 
 This makes it easier to chroma key in software like TikTok LIVE Studio.
 Only the outer page background is green.
@@ -166,28 +168,37 @@ Closing the app window should also stop everything it launched.
 ## COUNTER FILE FORMAT
 
 Each counter file should contain a simple value, for example:
+```text
 3
+```
 
 or
+
+```text
 12
+```
 
 The app reads the file contents as text and displays them live.
 
 ## EXAMPLE SETUP
 
-Example counter files:
+**Example counter files:**
+```text
 F:\My_Files\Stream\live_counters\streamer.txt
 F:\My_Files\Stream\live_counters\chat.txt
 F:\My_Files\Stream\live_counters\wins.txt
 F:\My_Files\Stream\live_counters\loses.txt
+```
 
-Example labels:
+**Example labels:**
+```text
 - Streamer
 - Chat
 - Wins
 - Loses
+```
 
-## EXAMPLE counters.json
+**EXAMPLE counters.json**
 
 ```text
 {
