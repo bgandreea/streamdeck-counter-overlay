@@ -1,4 +1,4 @@
-# Multi Stream Counter Companion
+# Stream Counter Companion
 
 A lightweight local overlay manager for Stream Deck counters that write their values to .txt files.
 
