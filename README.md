@@ -110,7 +110,7 @@ Multi Stream Counter Companion
 ├─ server_runtime.ps1
 ├─ start_live_counters.bat
 └─ counters.json
-```
+
 
 LiveCountersApp.ps1 - The main GUI app.
 
@@ -119,6 +119,8 @@ server_runtime.ps1 - The local server that reads .txt files and serves the overl
 start_live_counters.bat - A simple launcher for the app.
 
 counters.json - The saved config file created and updated automatically by the app.
+
+```
 
 ## HOW TO USE
 
