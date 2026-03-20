@@ -24,7 +24,7 @@ This tool turns one or more text-based counters into a local browser overlay tha
 
 This project is meant to work with Stream Deck counters that write their values to .txt files, such as plugins like Multi Stream Counter.
 
-Example workflow:
+**Example workflow:**
 
 1. A Stream Deck button updates a .txt file
 2. This app reads that file locally
@@ -55,26 +55,32 @@ This is especially useful in streaming software that does not support reading te
 
 ## OVERLAY STYLES
 
-Vertical
+### Vertical
 Displays counters stacked on top of each other.
 
-Example:
+**Example**
+```text
 Streamer   3
 Chat       1
 Wins       5
 Loses      2
+```
 
-Horizontal
+### Horizontal
 Displays counters side by side.
 
-Example:
+**Example**
+```text
 Streamer 3   Chat 1   Wins 5   Loses 2
+```
 
-Versus
+### Versus
 Displays the first two counters in a versus layout.
 
-Example:
+**Example**
+```text
 Streamer 3   vs   1 Chat
+```
 
 This is useful for head-to-head counters, battles, polls, or score comparisons.
 
@@ -96,34 +102,34 @@ The actual counter cards remain grey.
 
 ## PROJECT FILES
 
-Multi Stream Counter Companion/
+```text
+Multi Stream Counter Companion
 ├─ LiveCountersApp.ps1
 ├─ server_runtime.ps1
 ├─ start_live_counters.bat
 └─ counters.json
+```
 
-LiveCountersApp.ps1
-The main GUI app.
+LiveCountersApp.ps1 - The main GUI app.
 
-server_runtime.ps1
-The local server that reads .txt files and serves the overlay page.
+server_runtime.ps1 - The local server that reads .txt files and serves the overlay page.
 
-start_live_counters.bat
-A simple launcher for the app.
+start_live_counters.bat - A simple launcher for the app.
 
-counters.json
-The saved config file created and updated automatically by the app.
+counters.json - The saved config file created and updated automatically by the app.
 
 ## HOW TO USE
 
 1. Add counters
 Click Add, choose a .txt file, and enter the label you want to show in the overlay.
 
-Example labels:
+**Example labels:**
+```text
 - Streamer
 - Chat
 - Wins
 - Loses
+```
 
 2. Remove counters
 Select a counter in the list and click Remove.
@@ -183,6 +189,7 @@ Example labels:
 
 ## EXAMPLE counters.json
 
+```text
 {
   "refreshMs": 500,
   "style": "horizontal",
@@ -205,6 +212,7 @@ Example labels:
     }
   ]
 }
+```
 
 ## TROUBLESHOOTING
 
