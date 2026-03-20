@@ -58,7 +58,6 @@ This is especially useful in streaming software that does not support reading te
 ### Vertical
 Displays counters stacked on top of each other.
 
-**Example**
 ```text
 Streamer   3
 Chat       1
@@ -69,7 +68,6 @@ Loses      2
 ### Horizontal
 Displays counters side by side.
 
-**Example**
 ```text
 Streamer 3   Chat 1   Wins 5   Loses 2
 ```
@@ -77,7 +75,6 @@ Streamer 3   Chat 1   Wins 5   Loses 2
 ### Versus
 Displays the first two counters in a versus layout.
 
-**Example**
 ```text
 Streamer 3   vs   1 Chat
 ```
@@ -124,17 +121,7 @@ counters.json - The saved config file created and updated automatically by the a
 
 ## HOW TO USE
 
-1. Add counters
-Click Add, choose a .txt file, and enter the label you want to show in the overlay.
-
-```text
-Example labels:
-
-- Streamer
-- Chat
-- Wins
-- Loses
-```
+1. Add counters - Click Add, choose a .txt file, and enter the label you want to show in the overlay.
 
 2. Remove counters - Select a counter in the list and click Remove.
 
