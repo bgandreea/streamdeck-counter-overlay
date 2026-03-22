@@ -1,62 +1,101 @@
 # Stream Counter Companion
 
-A lightweight local overlay manager for Stream Deck counters that write their values to .txt files.
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+![Platform](https://img.shields.io/badge/Platform-Windows-0078D6?logo=windows&logoColor=white)
 
-This tool turns one or more text-based counters into a local browser overlay that can be captured in streaming software like TikTok LIVE Studio.
+A small Windows app that turns Stream Deck counters (values written to `.txt` files) into a **local browser overlay** you can capture in streaming software such as TikTok LIVE Studio.
 
-## FEATURES
+---
 
-- Add and remove .txt counter files from a simple Windows GUI
-- Assign a custom label to each counter
-- Choose between Vertical, Horizontal, or Versus layouts
-- Pick a refresh interval:
-  - 250 ms
-  - 500 ms
-  - 1000 ms
-  - 2000 ms
+## Table of contents
+
+- [Features](#features)
+- [Why use this](#why-use-this)
+- [Quick start](#quick-start)
+- [Requirements](#requirements)
+- [Project layout](#project-layout)
+- [Usage](#usage)
+- [Overlay layouts](#overlay-layouts)
+- [Chroma key background](#chroma-key-background)
+- [Counter file format](#counter-file-format)
+- [Troubleshooting](#troubleshooting)
+- [Privacy](#privacy)
+- [License](#license)
+
+---
+
+## Features
+
+- Add and remove `.txt` counter files from a simple Windows GUI
+- Custom label per counter
+- Layouts: **Vertical**, **Horizontal**, or **Versus**
+- Refresh interval: 250 ms, 500 ms, 1000 ms, or 2000 ms
 - Opens the overlay in a browser window
-- Uses a chroma-key friendly green background (```#00FF00```)
-- Keeps the actual counter cards grey
-- Local-only workflow
-- No blur effects
+- Chroma-key friendly green page background (`#00FF00`); counter cards stay grey
+- **Local-only** workflow — no blur effects, no cloud upload
 
-## USE CASE
+## Why use this
 
-This project is meant to work with Stream Deck counters that write their values to .txt files, such as plugins like Multi Stream Counter.
+Many streaming apps (especially outside the OBS ecosystem) cannot read text files as overlays. This project bridges that gap:
 
-**Example workflow:**
-
-1. A Stream Deck button updates a .txt file
-2. This app reads that file locally
+1. A Stream Deck button or plugin (e.g. **Multi Stream Counter**) updates a `.txt` file
+2. This app reads that file on disk
 3. The value appears in a browser overlay
-4. Your streaming software captures that browser window
+4. Your streaming software captures that window
 
-This is especially useful in streaming software that does not support reading text files directly.
+Useful when your software does not support text-file overlays natively.
 
-## QUICK START
+## Quick start
 
-1. Put these files in the same folder:
-   - LiveCountersApp.ps1
-   - server_runtime.ps1
-   - start_live_counters.bat
+1. Keep these files in the same folder:
 
-2. Run:
-   start_live_counters.bat
+   | File | Role |
+   |------|------|
+   | `LiveCountersApp.ps1` | Main GUI |
+   | `server_runtime.ps1` | Local server + overlay |
+   | `start_live_counters.bat` | Launcher |
 
-3. In the app:
-   - click Add
-   - select one or more .txt files
-   - enter the label for each counter
-   - choose a layout style
-   - choose a refresh interval
-   - click Start
+2. Run `start_live_counters.bat`.
+
+3. In the app: **Add** → pick one or more `.txt` files → set labels → choose layout and refresh interval → **Start**.
 
 4. Capture the opened browser window in your streaming software.
 
-## OVERLAY STYLES
+## Requirements
+
+- Windows
+- PowerShell
+- Microsoft Edge or Google Chrome
+- One or more `.txt` files containing counter values
+
+## Project layout
+
+```
+streamdeck-counter-overlay/
+├── LiveCountersApp.ps1      # Main GUI application
+├── server_runtime.ps1       # Local server; reads .txt files and serves the overlay
+├── start_live_counters.bat  # Launcher
+└── counters.json            # Saved config (created/updated by the app)
+```
+
+## Usage
+
+| Step | What to do |
+|------|------------|
+| Add counters | **Add** → choose a `.txt` file → enter the label shown in the overlay |
+| Remove | Select a counter in the list → **Remove** |
+| Layout | Choose **Vertical**, **Horizontal**, or **Versus** |
+| Refresh | Pick 250 ms, 500 ms, 1000 ms, or 2000 ms |
+| Start | **Start** saves config, starts the local server, opens the overlay in the browser |
+| Stop | **Stop** closes the overlay browser window and the server process |
+
+Closing the app window should also stop everything the app started.
+
+## Overlay layouts
 
 ### Vertical
-Displays counters stacked on top of each other.
+
+Counters stacked:
 
 ```text
 Streamer   3
@@ -66,92 +105,29 @@ Loses      2
 ```
 
 ### Horizontal
-Displays counters side by side.
+
+Counters in a row:
 
 ```text
 Streamer 3   Chat 1   Wins 5   Loses 2
 ```
 
 ### Versus
-Displays the first two counters in a versus layout.
+
+First two counters in a head-to-head layout (battles, polls, scores):
 
 ```text
 Streamer 3   vs   1 Chat
 ```
 
-This is useful for head-to-head counters, battles, polls, or score comparisons.
+## Chroma key background
 
-## CHROMA KEY BACKGROUND
+The overlay page uses solid green `#00FF00` so you can key it out in TikTok LIVE Studio and similar tools. Only the **page** background is green; the counter cards remain grey.
 
-The overlay page uses a solid green background:
-```
-#00FF00
-```
+## Counter file format
 
-This makes it easier to chroma key in software like TikTok LIVE Studio.
-Only the outer page background is green.
-The actual counter cards remain grey.
+Each file should contain a simple value, for example:
 
-## REQUIREMENTS
-
-- Windows
-- PowerShell
-- Microsoft Edge or Google Chrome
-- One or more .txt files containing counter values
-
-## PROJECT FILES
-
-```text
-Multi Stream Counter Companion
-├─ LiveCountersApp.ps1
-├─ server_runtime.ps1
-├─ start_live_counters.bat
-└─ counters.json
-
-
-LiveCountersApp.ps1 - The main GUI app.
-
-server_runtime.ps1 - The local server that reads .txt files and serves the overlay page.
-
-start_live_counters.bat - A simple launcher for the app.
-
-counters.json - The saved config file created and updated automatically by the app.
-
-```
-
-## HOW TO USE
-
-1. Add counters - Click Add, choose a .txt file, and enter the label you want to show in the overlay.
-
-2. Remove counters - Select a counter in the list and click Remove.
-
-3. Choose a layout - Pick one of:
-
-   - Vertical
-   - Horizontal
-   - Versus
-
-4. Choose refresh interval - Available options:
-   - 250 ms
-   - 500 ms
-   - 1000 ms
-   - 2000 ms
-
-5. Start the overlay - Click Start to:
-
-   - save the current config
-   - start the local server
-   - open the overlay in a browser window
-
-6. Stop the overlay - Click Stop to close:
-   - the overlay browser window
-   - the local server process
-
-Closing the app window should also stop everything it launched.
-
-## COUNTER FILE FORMAT
-
-Each counter file should contain a simple value, for example:
 ```text
 3
 ```
@@ -162,55 +138,45 @@ or
 12
 ```
 
-The app reads the file contents as text and displays them live.
+The app reads the file as text and displays it live.
 
-## TROUBLESHOOTING
+## Troubleshooting
 
-### PowerShell says script execution is disabled
+### PowerShell: scripts are disabled
 
-If you get an error like: ```running scripts is disabled on this system```
+If you see an error like “running scripts is disabled on this system”, run:
 
-try launching with:
-
-```text
+```powershell
 powershell -STA -NoProfile -ExecutionPolicy RemoteSigned -File ".\LiveCountersApp.ps1"
 ```
 
-Or set it for the current user:
+Or allow scripts for your user:
 
-```text
+```powershell
 Set-ExecutionPolicy -Scope CurrentUser RemoteSigned
 ```
 
-### The overlay does not update
+### Overlay does not update
 
-Check these things:
- - the .txt file path is correct
- - the file actually changes when the Stream Deck counter updates
- - the selected file in the app matches the file being updated
- - server_runtime.ps1 is in the same folder as the app
+- Confirm the `.txt` path is correct and the file changes when the Stream Deck updates it
+- Ensure the file selected in the app matches the one being written
+- Ensure `server_runtime.ps1` sits in the same folder as the app
 
-### The overlay window is not detected by streaming software
+### Streaming software does not see the overlay window
 
-Some streaming apps may not detect browser app windows reliably.
-
-If that happens:
- - try capturing a normal browser window
- - or use display capture and crop it manually
+Some apps detect browser windows inconsistently. Try capturing a normal browser window, or use display capture and crop.
 
 ### Stop does not close everything
 
-If browser windows stay open, the issue is usually how that browser instance was launched and detected. The current setup is designed to close only the overlay browser instance and the server process started by the app.
+If browser windows stay open, detection of that browser instance can vary. The app is intended to close the overlay browser instance and the server process it started.
 
-## WHY THIS EXISTS
+## Privacy
 
-Some streaming software, especially outside the OBS ecosystem, does not support text-file overlays directly.
+- Runs **locally**; nothing is uploaded by design
+- Suited for small, text-based counter files
 
-This tool fills that gap by turning .txt counters into a local browser overlay that can still be captured and chroma keyed.
+## License
 
-## NOTES
+This project is licensed under the [MIT License](LICENSE).
 
-- This project is local-only
-- It does not upload your data anywhere
-- It is designed to stay lightweight
-- It works best with small text-based counter files
+Copyright (c) 2026 Andreea Baboi
